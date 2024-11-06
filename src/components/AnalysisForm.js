@@ -12,23 +12,23 @@ function AnalysisForm({ onAnalyze }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="block text-gray-700">Patent ID:</label>
+        <span className="text-lg bold block text-black-700">Patent ID:</span>
         <input
           type="text"
           value={patentId}
           onChange={(e) => setPatentId(e.target.value)}
           required
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="US-RE49889-E1" 
         />
       </div>
       <div>
-        <label className="block text-gray-700">Company Name:</label>
+        <span className="text-lg block text-black-700">Company Name:</span>
         <input
           type="text"
           value={companyName}
           onChange={(e) => setCompanyName(e.target.value)}
           required
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Walmart Inc."
         />
       </div>
       <button
