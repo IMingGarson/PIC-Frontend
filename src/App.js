@@ -60,7 +60,7 @@ function App() {
     <div className="min-h-screen bg-gray-100 p-4">
       <div className="max-w-3xl mx-auto bg-white p-6 rounded shadow">
         <h1 className="text-3xl font-bold mb-4 text-center">Patent Infringement Checker</h1>
-        <AnalysisForm onAnalyze={handleAnalyze} />
+        <AnalysisForm onAnalyze={handleAnalyze} loading={loading} />
         {loading && (
           <div className="flex flex-col justify-center items-center mt-4">
             <ClipLoader className="flex" color="#3B82F6" loading={loading} size={50} />

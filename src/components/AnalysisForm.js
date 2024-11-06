@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function AnalysisForm({ onAnalyze }) {
+function AnalysisForm({ onAnalyze, loading }) {
   const [patentId, setPatentId] = useState('');
   const [companyName, setCompanyName] = useState('');
 
@@ -33,7 +33,10 @@ function AnalysisForm({ onAnalyze }) {
       </div>
       <button
         type="submit"
-        className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-200"
+        disabled={loading}
+        className={`w-full py-2 px-4 rounded transition duration-200 ${
+          loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'
+        }`}
       >
         Analyze
       </button>
