@@ -1,13 +1,7 @@
-import axios from 'axios';
-
-const apiClient = axios.create({
-  baseURL: 'http://localhost:5000',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
 export const analyzePatent = async (patent_id, company_name) => {
-  const response = await apiClient.post('/analyze', { patent_id, company_name });
-  return response.data;
+  return await fetch('http://localhost:5000/analyze', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ patent_id, company_name }),
+  });
 };

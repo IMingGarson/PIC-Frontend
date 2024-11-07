@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import AnalysisForm from './components/AnalysisForm';
 import AnalysisResult from './components/AnalysisResult';
+import SavedReports from './components/SavedReports';
 import { ClipLoader } from 'react-spinners';
+import { analyzePatent } from './utils/api';
+import { saveReport, getSavedReports } from './utils/localStorage';
 
 function App() {
   const [analysis, setAnalysis] = useState(null);
@@ -9,6 +12,7 @@ function App() {
   const [error, setError] = useState(null);
   const [caption, setCaption] = useState("Analyzing");
   const [dots, setDots] = useState("");
+  const [savedReports, setSavedReports] = useState([]);
 
   useEffect(() => {
     let timer, dotsTimer;
@@ -37,11 +41,7 @@ function App() {
     setCaption("Analyzing");
     setDots("");
     try {
-      const response = await fetch('http://localhost:5000/analyze', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ patent_id, company_name }),
-      });
+      const response = await analyzePatent(patent_id, company_name)
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || 'Something went wrong');
@@ -56,6 +56,16 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const saved = getSavedReports();
+    setSavedReports(saved);
+  }, []);
+
+  const handleSave = (report) => {
+    saveReport(report);
+    setSavedReports(getSavedReports());
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-4">
       <div className="max-w-3xl mx-auto bg-white p-6 rounded shadow">
@@ -68,7 +78,8 @@ function App() {
           </div>
         )}
         {error && <p className="text-red-500">{error}</p>}
-        {analysis && <AnalysisResult analysis={analysis} />}
+        {analysis && <AnalysisResult analysis={analysis} onSave={handleSave} />}
+        <SavedReports reports={savedReports} />
       </div>
     </div>
   );

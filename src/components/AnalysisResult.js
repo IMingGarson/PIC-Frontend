@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
-function AnalysisResult({ analysis }) {
+function AnalysisResult({ analysis, onSave = null }) {
   const {
     analysis_date,
     company_name,
@@ -64,6 +64,14 @@ function AnalysisResult({ analysis }) {
             </div>
           </div>
         ))}
+        { onSave && (
+          <button
+            onClick={() => onSave(analysis)}
+            className="mt-4 bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition duration-200"
+          >
+            Save Report
+          </button>
+        )}
       </div>
     </div>
   );
