@@ -12,7 +12,7 @@ You may also see any lint errors in the console.
 
 ### Setup API Endpoint
 
-Navigate to `App.js` and change the destination URL to `http://{Domain}:{Port}/analyze`.
+Navigate to `src/utils/api.js` and change the destination URL to `http://{Domain}:{Port}/analyze`.
 If Backend are running locally, the destination URL shall be `http://localhost:5000` by default.
 
 ### License
